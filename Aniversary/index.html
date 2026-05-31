@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tanggal 1 ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --gold-dim: #7a5f2a;
+      --bg: #0a0807;
+      --bg2: #110e0a;
+      --cream: #f0e6d0;
+      --warm: #d4b896;
+      --text: #e8dcc8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== PARTICLES ===== */
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up linear infinite;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    /* ===== SECTIONS ===== */
+    .pg { min-height: 100vh; position: relative; z-index: 1; }
+
+    /* ===== INTRO ===== */
+    #pg-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, #1a1208 0%, var(--bg) 70%);
+    }
+
+    .intro-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(5rem, 20vw, 12rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 80px rgba(201,168,76,0.4);
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { text-shadow: 0 0 80px rgba(201,168,76,0.3); }
+      50% { text-shadow: 0 0 120px rgba(201,168,76,0.6), 0 0 40px rgba(201,168,76,0.3); }
+    }
+
+    .intro-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      animation: fade-in 1.5s ease forwards;
+    }
+
+    .intro-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-style: italic;
+      color: var(--warm);
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fade-up 1s ease 0.8s forwards;
+    }
+
+    .intro-names {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      opacity: 0;
+      animation: fade-up 1s ease 1.2s forwards;
+    }
+    .intro-names span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      color: var(--cream);
+      letter-spacing: 0.05em;
+    }
+    .intro-names .heart {
+      color: var(--gold);
+      font-size: 1.2rem;
+      animation: heartbeat 1.5s ease infinite;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.3); }
+      60% { transform: scale(1.1); }
+    }
+
+    .scroll-hint {
+      margin-top: 4rem;
+      opacity: 0;
+      animation: fade-up 1s ease 2s forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    .scroll-hint span {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scroll-line 2s ease infinite;
+    }
+    @keyframes scroll-line {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ===== COUNTDOWN ===== */
+    #pg-count {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(to bottom, var(--bg), var(--bg2), var(--bg));
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--cream);
+      margin-bottom: 3rem;
+    }
+    .section-title em { color: var(--gold); font-style: italic; }
+
+    .countdown-grid {
+      display: flex;
+      gap: clamp(1rem, 3vw, 2.5rem);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .count-box {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 16px;
+      padding: clamp(1.2rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2.5rem);
+      min-width: 100px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .count-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .count-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    .count-since {
+      margin-top: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--warm);
+      opacity: 0.8;
+    }
+
+    /* ===== PHOTO ===== */
+    #pg-photo {
+      padding: 5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg2);
+    }
+
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 500px;
+      width: 100%;
+      margin-top: 3rem;
+    }
+
+    .polaroid {
+      background: #f5efe3;
+      padding: 10px 10px 35px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+      transform: rotate(var(--rot));
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      z-index: 10;
+      position: relative;
+    }
+    .polaroid:nth-child(1) { --rot: -2deg; }
+    .polaroid:nth-child(2) { --rot: 1.5deg; margin-top: 20px; }
+    .polaroid:nth-child(3) { --rot: -1deg; }
+    .polaroid:nth-child(4) { --rot: 2.5deg; margin-top: -10px; }
+
+    .polaroid-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #c8b89a;
+    }
+
+    .polaroid-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #c8b89a, #a89070);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .polaroid-caption {
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 0.75rem;
+      color: #5a4a3a;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
+    /* ===== LETTER ===== */
+    #pg-letter {
+      padding: 5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, #150f08 0%, var(--bg) 70%);
+    }
+
+    .letter-wrap {
+      max-width: 600px;
+      width: 100%;
+      background: rgba(201,168,76,0.04);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 20px;
+      padding: clamp(2rem, 5vw, 3.5rem);
+      margin-top: 2.5rem;
+      position: relative;
+    }
+    .letter-wrap::before {
+      content: '❝';
+      position: absolute;
+      top: -0.5rem;
+      left: 2rem;
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.3;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+    }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      line-height: 2;
+      color: var(--warm);
+      font-weight: 300;
+    }
+
+    .letter-body p { margin-bottom: 1.2em; }
+
+    .letter-sign {
+      margin-top: 2rem;
+      text-align: right;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .letter-date {
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.2em;
+      margin-top: 0.3rem;
+    }
+
+    /* ===== FOOTER ===== */
+    #pg-footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--bg);
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .footer-heart {
+      font-size: 2rem;
+      animation: heartbeat 1.5s ease infinite;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--warm);
+      opacity: 0.7;
+    }
+
+    /* ===== NAV DOTS ===== */
+    .nav-dots {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      z-index: 100;
+    }
+    .nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .nav-dot.active {
+      background: var(--gold);
+      transform: scale(1.5);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== MUSIC BUTTON ===== */
+    .music-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 100;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50px;
+      padding: 0.6rem 1.2rem;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .music-btn:hover {
+      background: rgba(201,168,76,0.2);
+    }
+    .music-icon { font-size: 1rem; }
+    .music-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 14px;
+    }
+    .music-bar {
+      width: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: bar-dance 0.8s ease infinite;
+    }
+    .music-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+    .music-bar:nth-child(2) { height: 10px; animation-delay: 0.15s; }
+    .music-bar:nth-child(3) { height: 14px; animation-delay: 0.3s; }
+    .music-bar:nth-child(4) { height: 8px; animation-delay: 0.45s; }
+    .music-bars.paused .music-bar { animation-play-state: paused; }
+    @keyframes bar-dance {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+
+    @media (max-width: 480px) {
+      .polaroid-grid { gap: 1rem; }
+      .nav-dots { right: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- Nav dots -->
+<div class="nav-dots">
+  <div class="nav-dot active" onclick="scrollToSection('pg-intro')"></div>
+  <div class="nav-dot" onclick="scrollToSection('pg-count')"></div>
+  <div class="nav-dot" onclick="scrollToSection('pg-photo')"></div>
+  <div class="nav-dot" onclick="scrollToSection('pg-letter')"></div>
+</div>
+
+<!-- Music button -->
+<button class="music-btn" id="music-btn" onclick="toggleMusic()">
+  <span class="music-icon">♪</span>
+  <div class="music-bars paused" id="music-bars">
+    <div class="music-bar"></div>
+    <div class="music-bar"></div>
+    <div class="music-bar"></div>
+    <div class="music-bar"></div>
+  </div>
+  <span id="music-label">Play Musik</span>
+</button>
+
+<!-- Audio -->
+<audio id="bg-music" loop>
+  <!-- Taruh file musik kamu di sini, contoh: -->
+  <source src="musik.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- ===== INTRO ===== -->
+<section id="pg-intro" class="pg">
+  <div class="intro-date">1</div>
+  <div class="intro-label">Juni · Tanggal Istimewa</div>
+  <div class="intro-tagline">Selamat Tanggal 1, Sayangku 🌙</div>
+  <div class="intro-names">
+    <span>Levii</span>
+    <span class="heart">♥</span>
+    <span>Clara</span>
+  </div>
+  <div class="scroll-hint" onclick="scrollToSection('pg-count')">
+    <span>scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ===== COUNTDOWN ===== -->
+<section id="pg-count" class="pg">
+  <div class="section-eyebrow reveal">Sudah bersama selama</div>
+  <div class="section-title reveal">Perjalanan <em>Kita</em> Sejauh Ini</div>
+  <div class="countdown-grid reveal" id="countdown-grid">
+    <div class="count-box">
+      <span class="count-num" id="c-year">0</span>
+      <span class="count-label">Tahun</span>
+    </div>
+    <div class="count-box">
+      <span class="count-num" id="c-month">0</span>
+      <span class="count-label">Bulan</span>
+    </div>
+    <div class="count-box">
+      <span class="count-num" id="c-day">0</span>
+      <span class="count-label">Hari</span>
+    </div>
+  </div>
+  <div class="count-since reveal">Sejak 1 Juni 2026 · 01/01/2026</div>
+</section>
+
+<!-- ===== PHOTO ===== -->
+<section id="pg-photo" class="pg">
+  <div class="section-eyebrow reveal">Kenangan Kita</div>
+  <div class="section-title reveal">Momen yang <em>Selalu</em> Kuingat</div>
+
+  <div class="polaroid-grid reveal">
+
+    <!-- FOTO 1 -->
+    <div class="polaroid">
+      <!-- Ganti src="foto1.jpg" dengan file foto kamu -->
+      <img class="polaroid-img" src="foto1.jpg" alt="foto1">
+      <div class="polaroid-caption">Hari pertama ketemu kakek 🌸</div>
+    </div>
+
+    <!-- FOTO 2 -->
+    <div class="polaroid">
+      <img class="polaroid-img" src="foto2.jpg" alt="foto2">
+      <div class="polaroid-caption">Momen favoritku</div>
+    </div>
+
+    <!-- FOTO 3 -->
+    <div class="polaroid">
+      <img class="polaroid-img" src="foto3.jpg" alt="foto3">
+      <div class="polaroid-caption">Senyummu segalanya</div>
+    </div>
+
+    <!-- FOTO 4 -->
+    <div class="polaroid">
+      <img class="polaroid-img" src="foto4.jpg" alt="foto4">
+      <div class="polaroid-caption">Selalu bersamamu</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== LETTER ===== -->
+<section id="pg-letter" class="pg">
+  <div class="section-eyebrow reveal">Untukmu</div>
+  <div class="section-title reveal">Dari <em>Hatiku</em></div>
+
+  <div class="letter-wrap reveal">
+    <div class="letter-body">
+      <p>Clara,</p>
+      <p>
+        Setiap tanggal 1 selalu jadi pengingat bahwa aku adalah orang yang paling beruntung di dunia ini. Beruntung karena punya kamu — seseorang yang membuat setiap hari terasa lebih hangat dan lebih berarti.
+      </p>
+      <p>
+        Terima kasih sudah mau menjadi bagian dari hidupku. Terima kasih untuk setiap tawa, setiap cerita, dan setiap momen kecil yang kita lewati bersama. Kamu bukan sekadar seseorang yang aku sayangi — kamu adalah rumah yang selalu ingin aku pulang ke sana.
+      </p>
+      <p>
+        Semoga kita terus tumbuh bersama, saling mendukung, dan selalu punya alasan untuk tersenyum setiap hari. Selamat tanggal 1, sayangku. ❤️
+      </p>
+    </div>
+    <div class="letter-sign">— Levii</div>
+    <div class="letter-date">01 · 01 · 2026</div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="pg-footer">
+  <span class="footer-heart">♥</span>
+  <div class="footer-text">Levii & Clara · Sejak 01/01/2026</div>
+</footer>
+
+<script>
+  // ===== PARTICLES =====
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.opacity = Math.random() * 0.5;
+    container.appendChild(p);
+  }
+
+  // ===== COUNTDOWN =====
+  function updateCountdown() {
+    const start = new Date('2026-01-01T00:00:00');
+    const now = new Date('2026-06-01T00:00:00'); // simulasi tanggal 1 Juni 2026
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+    if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+    if (months < 0) { years--; months += 12; }
+    document.getElementById('c-year').textContent = years;
+    document.getElementById('c-month').textContent = months;
+    document.getElementById('c-day').textContent = days;
+  }
+  updateCountdown();
+
+  // ===== SCROLL REVEAL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== NAV DOTS =====
+  const sections = ['pg-intro','pg-count','pg-photo','pg-letter'];
+  const dots = document.querySelectorAll('.nav-dot');
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - window.innerHeight / 2) current = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  });
+
+  function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ===== MUSIC =====
+  let playing = false;
+  function toggleMusic() {
+    const audio = document.getElementById('bg-music');
+    const bars = document.getElementById('music-bars');
+    const label = document.getElementById('music-label');
+    if (!audio.src && !audio.querySelector('source')) {
+      alert('Taruh file musik.mp3 di folder yang sama, lalu uncomment baris <source> di HTML!');
+      return;
+    }
+    if (playing) {
+      audio.pause(); bars.classList.add('paused'); label.textContent = 'Play Musik'; playing = false;
+    } else {
+      audio.play(); bars.classList.remove('paused'); label.textContent = 'Pause'; playing = true;
+    }
+  }
+</script>
+</body>
+</html>
